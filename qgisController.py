@@ -75,9 +75,9 @@ class QGISController():
         if hasattr(self.controller, 'iface'):
             self.controller.iface.layerTreeView().refreshLayerSymbology(layer.id())
 
-    def loadWFSVector(self,uri,QGISName,classifyKey):
+    def loadWFSVector(self,uri,QGISName,classifyKey=None):
         def run():
-            layer = QgsVectorLayer(uri, QGISName, "wfs")
+            return QgsVectorLayer(uri, QGISName, "wfs")
         def complete(result):
             self.addLayer(result)
             if classifyKey is not None:

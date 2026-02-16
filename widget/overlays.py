@@ -24,7 +24,7 @@ class OverlaysPage:
         pass
     def addTerrain(self):
         uri = self.controller.client.session.get_wfs_uri("terrains")
-        self.controller.qgis.loadWFSVector(uri,"Terrain Vector")
+        self.controller.qgis.loadWFSVector(uri,"Terrain Vector","terrain_type")
     def addBuildings(self):
         uri = self.controller.client.session.get_wfs_uri("buildings")
         self.controller.qgis.loadWFSVector(uri,"Buildings Vector","function")
