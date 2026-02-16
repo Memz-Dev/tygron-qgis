@@ -1,5 +1,13 @@
 from qgis.core import QgsRasterLayer, QgsProject, QgsRectangle,QgsVectorLayer,QgsTask, QgsApplication,QgsSettings
 
+from qgis.core import (
+    QgsCategorizedSymbolRenderer, 
+    QgsRendererCategory, 
+    QgsFillSymbol
+)
+from qgis.PyQt.QtGui import QColor
+import random
+
 class PluginTask(QgsTask):
     def __init__(self, description, background_fn, callback_fn=None):
         super().__init__(description, QgsTask.CanCancel)
@@ -41,12 +49,40 @@ class QGISController():
         if layer.isValid():
             QgsProject.instance().addMapLayer(layer)
             return layer
+        
+    def classify(self, layer, field_name='function'):
+        field_index = layer.fields().indexFromName(field_name)
+        if field_index == -1:
+            print(f"Field {field_name} not found!")
+            return
 
-    def loadWFSVector(self,uri,QGISName):
+        unique_values = layer.uniqueValues(field_index)
+        
+        categories = []
+        for value in unique_values:
+            symbol = QgsFillSymbol.createSimple({'outline_color': 'black'})
+            
+            color = QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+            symbol.setColor(color)
+            
+            category = QgsRendererCategory(value, symbol, str(value))
+            categories.append(category)
+
+        renderer = QgsCategorizedSymbolRenderer(field_name, categories)
+        layer.setRenderer(renderer)
+        
+        layer.triggerRepaint()
+        if hasattr(self.controller, 'iface'):
+            self.controller.iface.layerTreeView().refreshLayerSymbology(layer.id())
+
+    def loadWFSVector(self,uri,QGISName,classifyKey):
         def run():
-            return QgsVectorLayer(uri, QGISName, "wfs")
+            layer = QgsVectorLayer(uri, QGISName, "wfs")
         def complete(result):
             self.addLayer(result)
+            if classifyKey is not None:
+                self.classify(result,classifyKey)
+
             if task in self.tasks:
                 self.tasks.remove(task)
         

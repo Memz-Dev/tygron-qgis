@@ -59,7 +59,7 @@ class Session:
             f"&typename={type_name}",
             "&version=1.1.0",
             "&srsname=EPSG:3857",
-            "&ignoreAxisOrientation=1&pagingEnabled=true"
+            "&ignoreAxisOrientation=1"
         ]
         return "".join(params)
 

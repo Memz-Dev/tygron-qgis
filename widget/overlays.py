@@ -23,10 +23,11 @@ class OverlaysPage:
     def addWater(self):
         pass
     def addTerrain(self):
-        pass
+        uri = self.controller.client.session.get_wfs_uri("terrains")
+        self.controller.qgis.loadWFSVector(uri,"Terrain Vector")
     def addBuildings(self):
         uri = self.controller.client.session.get_wfs_uri("buildings")
-        self.controller.qgis.loadWFSVector(uri,"Buildings Vector")
+        self.controller.qgis.loadWFSVector(uri,"Buildings Vector","function")
 
     def __init__(self,widget,controller):
         self.widget = widget
