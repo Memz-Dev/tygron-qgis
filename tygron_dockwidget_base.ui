@@ -30,7 +30,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="LoginPage">
        <property name="enabled">
@@ -209,9 +209,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="SessionLoadLayers">
+         <widget class="QPushButton" name="SessionOverlays">
           <property name="text">
-           <string>Load Tygron Layers</string>
+           <string>Overlays</string>
           </property>
          </widget>
         </item>
@@ -232,6 +232,64 @@
          <widget class="QPushButton" name="SessionReturnButton">
           <property name="text">
            <string>Leave Session</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="overlaysPage">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QScrollArea" name="OverlaysQuickImports">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>-29</y>
+             <width>228</width>
+             <height>128</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QPushButton" name="OverlaysQuickSatellite">
+              <property name="text">
+               <string>Satellite</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="OverlaysQuickBuildings">
+              <property name="text">
+               <string>Buildings</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="OverlaysQuickTerrain">
+              <property name="text">
+               <string>Terrain</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="OverlaysQuickWater">
+              <property name="text">
+               <string>Water</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="OverlaysReturnButton">
+          <property name="text">
+           <string>Return</string>
           </property>
          </widget>
         </item>

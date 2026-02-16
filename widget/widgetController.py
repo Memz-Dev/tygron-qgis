@@ -5,6 +5,7 @@ from .homePage import HomePage
 from .login import LoginPage
 from .projectSelection import ProjectSelectionPage
 from .session import SessionPage
+from .overlays import OverlaysPage
 
 class widgetController:
 
@@ -17,6 +18,7 @@ class widgetController:
         self.home = HomePage(self.widget,self)
         self.openProject = ProjectSelectionPage(self.widget,self)
         self.session = SessionPage(self.widget,self)
+        self.overlays = OverlaysPage(self.widget,self)
         self.client = plugin.client
         self.qgis = QGISController()
 
