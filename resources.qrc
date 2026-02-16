@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/tygron" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
